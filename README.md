@@ -2,4 +2,4 @@
 
 **Seçilen Konu:** C - Mini Oyun Motoru
 
-**Gerekçe:** Oyunlardaki karakter ve nesne davranışlarının kod karmaşıklığı yaratmadan nasıl yönetildiğini öğrenmek istiyorum. Özellikle "if-else" yığınlarından kurtulmanın profesyonel yollarını keşfetmeyi hedefliyorum.
+**Gerekçe:** Oyun oynamayı çok sevdiğimden ve oyunlara olan genel ilgimden  dolayı bu projeyi seçiyorum ve aynı  zamanda oyunlardaki karakter ve nesne davranışlarının kod karmaşıklığı yaratmadan nasıl yönetildiğini öğrenmek istiyorum. Özellikle "if-else" yığınlarından kurtulmanın profesyonel yollarını keşfetmeyi hedefliyorum.
