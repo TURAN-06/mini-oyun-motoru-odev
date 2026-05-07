@@ -1,17 +1,28 @@
-public class GameObject {
-    String type; // "Player", "Enemy", "Npc"
-    
-    public GameObject(String type) {
-        this.type = type;
-    }
+interface IGameObject {
+    void update();
+}
 
+class Player implements IGameObject {
+    @Override
     public void update() {
-        if (type.equals("Player")) {
-            System.out.println("Oyuncu klavyeden girdi bekliyor...");
-        } else if (type.equals("Enemy")) {
-            System.out.println("Düşman oyuncuya doğru saldırıyor!");
-        } else if (type.equals("Npc")) {
-            System.out.println("Npc etrafta boş boş dolaşıyor.");
+        System.out.println("Oyuncu hareketleri güncelleniyor...");
+    }
+}
+
+class Enemy implements IGameObject {
+    @Override
+    public void update() {
+        System.out.println("Düşman yapay zekası hesaplanıyor...");
+    }
+}
+
+class GameObjectFactory {
+    public static IGameObject createObject(String type) {
+        if (type.equalsIgnoreCase("Player")) {
+            return new Player();
+        } else if (type.equalsIgnoreCase("Enemy")) {
+            return new Enemy();
         }
+        return null;
     }
 }
