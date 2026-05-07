@@ -2,4 +2,4 @@
 
 **Seçilen Konu:** C - Mini Oyun Motoru
 
-**Gerekçe:** Oyun oynamayı çok sevdiğimden ve oyunlara olan genel ilgimden  dolayı bu projeyi seçiyorum ve aynı  zamanda oyunlardaki karakter ve nesne davranışlarının kod karmaşıklığı yaratmadan nasıl yönetildiğini öğrenmek istiyorum. Özellikle "if-else" yığınlarından kurtulmanın profesyonel yollarını keşfetmeyi hedefliyorum.
+**Gerekçe:** Çok oyun oynayan biri olarak, oyunlardaki karakterlerin ve nesnelerin arka planda nasıl bir sistemle çalıştığını her zaman merak etmişimdir. Bu projeyi; oyun mekaniklerinin "if-else" yığınlarına ve kod karmaşıklığına düşmeden nasıl profesyonelce yönetilebileceğini tasarım örüntüleri üzerinden öğrenmek için seçtim. Amacım, severek vakit geçirdiğim oyun dünyasının yazılım mutfağındaki çözümlerini bizzat uygulayarak deneyimlemektir.
