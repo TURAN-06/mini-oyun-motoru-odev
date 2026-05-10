@@ -5,24 +5,49 @@ interface IGameObject {
 class Player implements IGameObject {
     @Override
     public void update() {
-        System.out.println("Oyuncu hareketleri güncelleniyor...");
+        System.out.print("Oyuncu hareket ediyor");
     }
 }
 
 class Enemy implements IGameObject {
     @Override
     public void update() {
-        System.out.println("Düşman yapay zekası hesaplanıyor...");
+        System.out.print("Düşman devriye geziyor");
     }
 }
 
-class GameObjectFactory {
-    public static IGameObject createObject(String type) {
-        if (type.equalsIgnoreCase("Player")) {
-            return new Player();
-        } else if (type.equalsIgnoreCase("Enemy")) {
-            return new Enemy();
-        }
-        return null;
+abstract class GameObjectDecorator implements IGameObject {
+    protected IGameObject decoratedObject;
+
+    public GameObjectDecorator(IGameObject decoratedObject) {
+        this.decoratedObject = decoratedObject;
+    }
+
+    public void update() {
+        decoratedObject.update();
+    }
+}
+
+class ArmorDecorator extends GameObjectDecorator {
+    public ArmorDecorator(IGameObject decoratedObject) {
+        super(decoratedObject);
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        System.out.print(" + [Zırh Aktif: Defans arttı]");
+    }
+}
+
+class SpeedDecorator extends GameObjectDecorator {
+    public SpeedDecorator(IGameObject decoratedObject) {
+        super(decoratedObject);
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        System.out.print(" + [Hız İksiri: Daha hızlı hareket ediyor]");
     }
 }
