@@ -1,53 +1,31 @@
-interface IGameObject {
-    void update();
+interface IMovementStrategy {
+    void move();
 }
 
-class Player implements IGameObject {
-    @Override
-    public void update() {
-        System.out.print("Oyuncu hareket ediyor");
+class AggressiveMovement implements IMovementStrategy {
+    public void move() {
+        System.out.println(" -> Davranış: Agresif! Doğrudan hedefe saldırıyor.");
     }
 }
 
-class Enemy implements IGameObject {
-    @Override
-    public void update() {
-        System.out.print("Düşman devriye geziyor");
+class CowardlyMovement implements IMovementStrategy {
+    public void move() {
+        System.out.println(" -> Davranış: Korkak! Canı azaldı, uzağa kaçıyor.");
     }
 }
 
-abstract class GameObjectDecorator implements IGameObject {
-    protected IGameObject decoratedObject;
+class SmartEnemy extends Enemy {
+    private IMovementStrategy strategy;
 
-    public GameObjectDecorator(IGameObject decoratedObject) {
-        this.decoratedObject = decoratedObject;
-    }
-
-    public void update() {
-        decoratedObject.update();
-    }
-}
-
-class ArmorDecorator extends GameObjectDecorator {
-    public ArmorDecorator(IGameObject decoratedObject) {
-        super(decoratedObject);
+    public void setStrategy(IMovementStrategy strategy) {
+        this.strategy = strategy;
     }
 
     @Override
     public void update() {
-        super.update();
-        System.out.print(" + [Zırh Aktif: Defans arttı]");
-    }
-}
-
-class SpeedDecorator extends GameObjectDecorator {
-    public SpeedDecorator(IGameObject decoratedObject) {
-        super(decoratedObject);
-    }
-
-    @Override
-    public void update() {
-        super.update();
-        System.out.print(" + [Hız İksiri: Daha hızlı hareket ediyor]");
+        super.update(); 
+        if (strategy != null) {
+            strategy.move();
+        }
     }
 }
