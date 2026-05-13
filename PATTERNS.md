@@ -16,3 +16,12 @@
 **Çözüm:** `Decorator` örüntüsü kullanılarak nesnelerin yapısı bozulmadan onlara dinamik olarak yeni özellikler "giydirildi". `ArmorDecorator` ve `SpeedDecorator` gibi sınıflar oluşturularak bu özelliklerin birbirleriyle kombine edilmesi sağlandı.
 
 **Sonuç:** Nesnelere çalışma zamanında (runtime) yeni yetenekler kazandırılabiliyor ve "Single Responsibility" (Tek Sorumluluk) prensibine uyum sağlanmış oldu.
+
+---
+## 3. Strategy (Davranışsal Örüntü) - Faz 3
+
+**Sorun:** Oyun nesnelerinin davranışlarını (örneğin düşman yapay zekası) yönetirken, farklı durumlar için sürekli `if-else` veya `switch-case` yapıları kullanmak kodun bakımını zorlaştırıyordu.
+
+**Çözüm:** `Strategy` örüntüsü ile hareket davranışları (`AggressiveMovement`, `CowardlyMovement`) ayrı sınıflara ayrıldı. Bu sayede bir nesnenin davranışı, çalışma zamanında (runtime) kolayca değiştirilebilir hale geldi.
+
+**Sonuç:** Kodun karar verme mekanizması esnekleşti ve yeni davranışlar eklemek için mevcut sınıfları değiştirmeye gerek kalmadı.
