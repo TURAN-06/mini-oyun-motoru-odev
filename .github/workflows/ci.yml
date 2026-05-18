@@ -19,10 +19,7 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         
-    - name: Build with Java Compiler
+    - name: Build Code
       run: |
-        if [ -d "src" ]; then
-          javac src/*.java
-        else
-          javac *.java
-        fi
+        echo "Derleme başlatılıyor..."
+        javac *.java
