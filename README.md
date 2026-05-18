@@ -5,18 +5,32 @@
 
 ### 🏗 Kullanılan Tasarım Örüntüleri
 
-* **Factory Method (Creational - Faz 1):** Nesne üretim sorumluluğunu merkezi ve esnek bir yapıya taşıyarak nesne yaratma süreçlerini standartlaştırmak amacıyla uygulandı.
-* **Decorator (Structural - Faz 2):** Nesnelerin mevcut kod yapısını kırmadan, karakterlere ve oyun nesnelerine dinamik özellikler kazandırmak amacıyla uygulandı.
-* **Strategy (Behavioral - Faz 3):** Karakterlerin yapay zeka hareket kararlarını ve davranışlarını if-else kullanmadan, çalışma zamanında (runtime) esnekçe değiştirebilmek ve Açık/Kapalı Prensibini (OCP) sağlamak amacıyla uygulandı.
+* [cite_start]**Factory Method (Creational - Faz 1):** Nesne üretim sorumluluğunu merkezi ve esnek bir yapıya taşıyarak nesne yaratma süreçlerini standartlaştırmak amacıyla uygulandı[cite: 30, 32, 33].
+* [cite_start]**Decorator (Structural - Faz 2):** Nesnelerin mevcut kod yapısını kırmadan, karakterlere ve oyun nesnelerine dinamik özellikler (büyü kalkanı vb.) kazandırmak amacıyla uygulandı[cite: 51, 53, 54].
+* [cite_start]**Facade (Structural - Faz 2):** Karmaşık alt sistemleri, fabrikaları ve oyun döngüsü yönetimini tek bir çatı altında toplayarak istemci bağımlılığını en aza indirmek için uygulandı[cite: 53, 54].
+* [cite_start]**Strategy (Behavioral - Faz 3):** Karakterlerin yapay zeka hareket kararlarını ve davranışlarını if-else kullanmadan, çalışma zamanında (runtime) esnekçe değiştirebilmek amacıyla uygulandı[cite: 73, 74].
+* [cite_start]**Observer (Behavioral - Faz 3):** Oyun içindeki global etkinlikleri ve durum değişikliklerini, nesnelere gevşek bağlı (loosely coupled) bir mimariyle duyurarak Açık/Kapalı Prensibini (OCP) tam anlamıyla sağlamak için uygulandı[cite: 73, 74, 75].
 
 ### 📊 Mimari Diyagram (UML)
 
 ```mermaid
 classDiagram
+    class GameEngineFacade {
+        -List~GameObject~ gameObjects
+        -List~IGameObserver~ observers
+        +initializeGame()
+        +updateGame()
+        +triggerGlobalEvent(String event)
+    }
     class GameObject {
         +String type
         +IMovementStrategy movementStrategy
         +update()
+        +onGameEvent(String event)
+    }
+    class IGameObserver {
+        <<interface>>
+        +onGameEvent(String event)
     }
     class IMovementStrategy {
         <<interface>>
@@ -28,6 +42,20 @@ classDiagram
     class CowardlyMovement {
         +move()
     }
+    class GameObjectDecorator {
+        <<abstract>>
+        #GameObject decoratedObject
+        +update()
+    }
+    class ShieldDecorator {
+        +update()
+    }
+
+    GameEngineFacade --> GameObject
+    GameEngineFacade --> IGameObserver
+    IGameObserver <|.. GameObject
     GameObject --> IMovementStrategy
     IMovementStrategy <|.. AggressiveMovement
     IMovementStrategy <|.. CowardlyMovement
+    GameObject <|-- GameObjectDecorator
+    GameObjectDecorator <|-- ShieldDecorator
